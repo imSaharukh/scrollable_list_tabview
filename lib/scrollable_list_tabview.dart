@@ -77,7 +77,7 @@ class _ScrollableListTabViewState extends State<ScrollableListTabView> {
             itemCount: widget.tabs.length,
             scrollDirection: Axis.horizontal,
             itemScrollController: _tabScrollController,
-            padding: EdgeInsets.symmetric(vertical: 2.5),
+            // padding: EdgeInsets.symmetric(vertical: 2.5),
             itemBuilder: (context, index) {
               var tab = widget.tabs[index].tab;
               return ValueListenableBuilder<int>(
@@ -86,33 +86,38 @@ class _ScrollableListTabViewState extends State<ScrollableListTabView> {
                     var selected = index == i;
                     var borderColor = selected
                         ? tab.activeBackgroundColor
-                        : Theme.of(context).dividerColor;
+                        : tab.inactiveBackgroundColor;
                     return Container(
-                      height: 32,
                       margin: _kTabMargin,
-                      decoration: BoxDecoration(
-                          color: selected
-                              ? tab.activeBackgroundColor
-                              : tab.inactiveBackgroundColor,
-                          borderRadius: tab.borderRadius),
-                      child: OutlinedButton(
-                        style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.all(
-                                selected ? Colors.white : Colors.grey),
-                            backgroundColor: MaterialStateProperty.all(selected
-                                ? tab.activeBackgroundColor
-                                : tab.inactiveBackgroundColor),
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            side: MaterialStateProperty.all(BorderSide(
-                              width: 1,
-                              color: borderColor,
-                            )),
-                            elevation: MaterialStateProperty.all(0),
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                    borderRadius: tab.borderRadius))),
-                        child: _buildTab(index),
-                        onPressed: () => _onTabPressed(index),
+                      // decoration: BoxDecoration(
+                      //     color: selected
+                      //         ? tab.activeBackgroundColor
+                      //         : tab.inactiveBackgroundColor,
+                      //     borderRadius: tab.borderRadius),
+                      child: Container(
+                        width: 100,
+                        // color: Colors.green,
+                        child: Stack(
+                          children: [
+                            Center(
+                              child: InkWell(
+                                child: _buildTab(index, borderColor),
+                                onTap: () => _onTabPressed(index),
+                              ),
+                            ),
+                            // Text("data"),
+                            selected
+                                ? Positioned(
+                                    bottom: 0,
+                                    child: Container(
+                                      height: 2,
+                                      width: 200,
+                                      color: borderColor,
+                                    ),
+                                  )
+                                : Container()
+                          ],
+                        ),
                       ),
                     );
                   });
@@ -151,9 +156,9 @@ class _ScrollableListTabViewState extends State<ScrollableListTabView> {
         .copyWith(fontWeight: FontWeight.w500);
     return Builder(
       builder: (_) {
-        if (tab.icon == null) return tab.label;
+        if (tab.icon == null) return Text(tab.label);
         if (!tab.showIconOnList)
-          return DefaultTextStyle(style: textStyle, child: tab.label);
+          return DefaultTextStyle(style: textStyle, child: Text(tab.label));
         return DefaultTextStyle(
           style: Theme.of(context)
               .textTheme
@@ -163,21 +168,20 @@ class _ScrollableListTabViewState extends State<ScrollableListTabView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
-            children: [tab.icon, _kSizedBoxW8, tab.label],
+            children: [tab.icon, _kSizedBoxW8, Text(tab.label)],
           ),
         );
       },
     );
   }
 
-  Widget _buildTab(int index) {
+  Widget _buildTab(int index, Color color) {
     var tab = widget.tabs[index].tab;
-    if (tab.icon == null) return tab.label;
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [tab.icon, _kSizedBoxW8, tab.label],
+    return Text(
+      tab.label,
+      style: tab.tabtextStyle == null
+          ? TextStyle(color: color)
+          : tab.tabtextStyle.copyWith(color: color),
     );
   }
 

@@ -45,9 +45,9 @@ class _MyHomePageState extends State<MyHomePage> {
         tabs: [
           ScrollableListTab(
               tab: ListTab(
-                  label: Text('Label 1'),
-                  icon: Icon(Icons.group),
-                  showIconOnList: false),
+                  activeBackgroundColor: Colors.red,
+                  label: 'Label 1',
+                  inactiveBackgroundColor: Colors.black),
               body: ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               )),
           ScrollableListTab(
-              tab: ListTab(label: Text('Label 2'), icon: Icon(Icons.subject)),
+              tab: ListTab(label: 'Label 2'),
               body: GridView.builder(
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -78,9 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
               )),
           ScrollableListTab(
               tab: ListTab(
-                  label: Text('Label 3'),
-                  icon: Icon(Icons.subject),
-                  showIconOnList: true),
+                label: 'Label 3',
+              ),
               body: GridView.builder(
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -92,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               )),
           ScrollableListTab(
-              tab: ListTab(label: Text('Label 4'), icon: Icon(Icons.add)),
+              tab: ListTab(label: 'Label 4'),
               body: ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -110,7 +109,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               )),
           ScrollableListTab(
-              tab: ListTab(label: Text('Label 5'), icon: Icon(Icons.group)),
+              tab: ListTab(
+                label: 'Label 5',
+              ),
               body: ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -128,7 +129,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               )),
           ScrollableListTab(
-              tab: ListTab(label: Text('Label 6'), icon: Icon(Icons.subject)),
+              tab: ListTab(
+                label: 'Label 6',
+              ),
               body: GridView.builder(
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -141,9 +144,8 @@ class _MyHomePageState extends State<MyHomePage> {
               )),
           ScrollableListTab(
               tab: ListTab(
-                  label: Text('Label 7'),
-                  icon: Icon(Icons.subject),
-                  showIconOnList: true),
+                label: 'Label 7',
+              ),
               body: GridView.builder(
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -155,7 +157,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               )),
           ScrollableListTab(
-              tab: ListTab(label: Text('Label 8'), icon: Icon(Icons.add)),
+              tab: ListTab(
+                label: 'Label 8',
+              ),
               body: ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),

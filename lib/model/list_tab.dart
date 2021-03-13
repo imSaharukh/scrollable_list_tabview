@@ -6,9 +6,11 @@ class ListTab {
       {Key key,
       this.icon,
       @required this.label,
+      this.lebeltextStyle,
+      this.tabtextStyle,
       this.borderRadius = const BorderRadius.all(const Radius.circular(5.0)),
       this.activeBackgroundColor = Colors.blue,
-      this.inactiveBackgroundColor = Colors.transparent,
+      this.inactiveBackgroundColor = Colors.black,
       this.showIconOnList = false,
       this.borderColor = Colors.grey})
       : assert(label != null),
@@ -22,7 +24,7 @@ class ListTab {
   final Widget icon;
 
   /// Label to be shown in the tab, must be non-null.
-  final Widget label;
+  final String label;
 
   /// [BorderRadius] for the a tab at the bottom tab view.
   /// This won't affect the tab in the scrollable list.
@@ -39,4 +41,9 @@ class ListTab {
 
   /// Color of the [Border] property of the inner tab [Container].
   final Color borderColor;
+
+  /// Color of the [Border] property of the inner tab [Container].
+  final TextStyle lebeltextStyle;
+
+  final TextStyle tabtextStyle;
 }
