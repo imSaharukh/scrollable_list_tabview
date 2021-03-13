@@ -88,7 +88,7 @@ class _ScrollableListTabViewState extends State<ScrollableListTabView> {
                         ? tab.activeBackgroundColor
                         : tab.inactiveBackgroundColor;
                     return Container(
-                      margin: _kTabMargin,
+                      // margin: _kTabMargin,
                       // decoration: BoxDecoration(
                       //     color: selected
                       //         ? tab.activeBackgroundColor
@@ -134,7 +134,7 @@ class _ScrollableListTabViewState extends State<ScrollableListTabView> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: _kTabMargin.add(const EdgeInsets.all(5.0)),
+                  padding: (EdgeInsets.symmetric(vertical: 8)),
                   child: _buildInnerTab(index),
                 ),
                 Flexible(
